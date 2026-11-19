@@ -1,6 +1,7 @@
 
 #include "Game.h"
 #include "Tile.h"
+
 #include <iostream>
 
 Game::Game(sf::RenderWindow& game_window)
@@ -25,7 +26,7 @@ bool Game::init()
 	menu_text2.setFont(font);
 	menu_text1.setPosition(sf::Vector2f(850,150));
 	menu_text2.setPosition(sf::Vector2f(850,250));
-	menu_active = true;
+	menu_active = MENU;
 
 	menubutton1_texture = new sf::Texture();
 	menubutton2_texture = new sf::Texture();
@@ -53,6 +54,19 @@ void Game::mouseButtonPressed(const sf::Event::MouseButtonPressed* event)
 {
 
     board->mouseButtonPressed(event);
+	if (menu_active==Gamestate::MENU)
+	{
+		if (menubutton1->getGlobalBounds().contains(sf::Vector2f(event->position)))
+		{
+			std::cout << "Connect button pressed" << std::endl;
+		}
+		else if (menubutton2->getGlobalBounds().contains(sf::Vector2f(event->position)))
+		{
+			std::cout << "Host button pressed" << std::endl;
+			Server->init();
+			Server->run();
+		}
+	}
 
 }
 
@@ -65,11 +79,11 @@ void Game::keyPressed(const sf::Event::KeyPressed* event)
 {
 	if (event->scancode == sf::Keyboard::Scancode::C)
 	{
-		menu_active = false;
+		menu_active = Gamestate::GAME;
 	}
 	if (event->scancode == sf::Keyboard::Scancode::H)
 	{
-		menu_active = false;
+		menu_active = Gamestate::GAME;
 	}
 }
 

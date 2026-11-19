@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
 
+
 class Game
 {
  public:
@@ -24,10 +25,16 @@ class Game
 	sf::Text menu_text1{ font };
 	sf::Text menu_text2{ font };
 	std::shared_ptr<Board> board;
-	bool menu_active = true;
+	
 	sf::Sprite* menubutton1;
 	sf::Texture* menubutton1_texture;
 	sf::Sprite* menubutton2;
 	sf::Texture* menubutton2_texture;
+	enum Gamestate
+	{
+		MENU,
+		GAME
+	};
+	Gamestate menu_active = Gamestate::MENU;
 };
 
