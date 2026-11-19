@@ -34,7 +34,9 @@ void Game::render()
 
 void Game::mouseButtonPressed(const sf::Event::MouseButtonPressed* event)
 {
+
     board->mouseButtonPressed(event);
+
 }
 
 void Game::mouseButtonReleased(const sf::Event::MouseButtonReleased* event)
