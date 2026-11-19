@@ -20,7 +20,14 @@ class Game
 
  private:
 	sf::RenderWindow& window;
-
+	sf::Font font;
+	sf::Text menu_text1{ font };
+	sf::Text menu_text2{ font };
 	std::shared_ptr<Board> board;
+	bool menu_active = true;
+	sf::Sprite* menubutton1;
+	sf::Texture* menubutton1_texture;
+	sf::Sprite* menubutton2;
+	sf::Texture* menubutton2_texture;
 };
 
